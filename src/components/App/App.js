@@ -12,10 +12,10 @@ export default class App extends Component {
         selectedPerson: 1,
     }
 
-    onPersonSelected(id){
+    onPersonSelected = (id) => {
         this.setState({
             selectedPerson: id,
-        }); 
+        });
     }
     
     render() {
