@@ -15,7 +15,7 @@
   .person-details .list-group-item {
     padding: .25rem;
     background-color: #222222;
-    border-bottom: 1px solid #282828;
+    border-top: 2px solid #282828;
   }
   
   .person-details .list-group-item .term{
