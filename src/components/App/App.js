@@ -9,14 +9,14 @@ import './App.css';
 export default class App extends Component {
     
     state = {
-        selectedPerson: null,
+        selectedPerson: 1,
     }
 
-    // onPersonSelected = (id) => {
-    //     this.setState({
-    //         selectedPerson: id
-    //     }); 
-    // }
+    onPersonSelected(id){
+        this.setState({
+            selectedPerson: id,
+        }); 
+    }
     
     render() {
         return (
