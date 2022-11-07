@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import SwapiService from "./../../services/SwapiService";
+import Spinner from "./../Spinner";
 
 import './PersonDetails.css';
 
@@ -7,6 +8,7 @@ export default class PersonDetails extends Component {
     
     state = {
         person: null,
+        loaded: false,
     }
 
     swapiService = new SwapiService();
@@ -18,8 +20,15 @@ export default class PersonDetails extends Component {
 
     componentDidUpdate(prevProps, prevState) {
         if (this.props.personId !== prevProps.personId) {
+            this.stateToLoad();
             this.updatePerson();
         }
+    }
+
+    stateToLoad = () => {
+        this.setState({
+            loaded: false
+        });
     }
 
     updatePerson = () => {
@@ -29,7 +38,7 @@ export default class PersonDetails extends Component {
             this.swapiService
             .getPerson(personId)
             .then((person) => {
-                this.setState({ person })
+                this.setState({ person, loaded: true })
             })
             .catch(this.onError);
         }
@@ -37,15 +46,28 @@ export default class PersonDetails extends Component {
     render() {
 
         if(!this.state.person) {
-            return <span>Select a person from a list</span>
+            return <Spinner />
         }
 
-        const { id, name, gender, 
-            birthYear, eyeColor } = this.state.person;
+        const { person, loaded } = this.state;
+        const content = loaded ? <PersonView person={person} /> : <Spinner />;
 
         return (
             <div className="person-details card">
-                <img className="person-image" src={`https://starwars-visualguide.com/assets/img/characters/${id}.jpg`} alt="current person"></img>
+                {content}
+            </div>
+        );
+    }
+}
+
+const PersonView = ({person}) => {
+
+    const { id, name, gender,
+            birthYear, eyeColor } = person;
+
+    return (
+        <React.Fragment>
+            <img className="person-image" src={`https://starwars-visualguide.com/assets/img/characters/${id}.jpg`} alt="current person"></img>
                 <div className="card-body">
                     <h4>{name}</h4>
                     <ul className="list-group list-group-flush">
@@ -63,7 +85,6 @@ export default class PersonDetails extends Component {
                         </li>
                     </ul>
                 </div>
-            </div>
-        );
-    }
+        </React.Fragment>
+    );
 }
