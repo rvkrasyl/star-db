@@ -13,10 +13,13 @@ export default class PersonDetails extends Component {
 
     componentDidMount() {
         this.updatePerson();
+        console.log('updated Mount');
     }
 
-    componentDidUpdate() {
-        this.updatePerson();
+    componentDidUpdate(prevProps, prevState) {
+        if (this.props.personId !== prevProps.personId) {
+            this.updatePerson();
+        }
     }
 
     updatePerson = () => {
