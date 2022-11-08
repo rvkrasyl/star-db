@@ -53,11 +53,10 @@ export default class ItemDetails extends Component {
                       components={ 
                         React.Children
                             .map(this.props.children, (child) => {
-                                return child;
+                                return React.cloneElement(child, { item });
                             })
                       } 
-            /> : 
-            <Spinner />;
+            /> : <Spinner />;
 
         return (
             <div className="item-details card">
@@ -65,15 +64,6 @@ export default class ItemDetails extends Component {
             </div>
         );
     }
-}
-
-export const Record = ({ item, field, label }) => {
-    return (
-        <li className="list-group-item">
-            <span className="term">{label}:</span>
-            <span>{field}</span>
-        </li>
-    );
 }
 
 const ItemView = ({item, img, components}) => {
