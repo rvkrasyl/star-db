@@ -6,6 +6,7 @@ import ItemList from "../ItemList";
 import PersonDetails from "../PersonDetails";
 import SwapiService from "../../services/SwapiService";
 import BodyRow from "../BodyRow";
+import ErrorBoundry from "../ErrorBoundry";
 
 import './App.css';
 export default class App extends Component {   
@@ -26,7 +27,9 @@ export default class App extends Component {
                             renderItem={(item) => `${item.name} (${item.diameter}km²)`}/>
                     } 
                     rightElement= {
-                        <PersonDetails personId={4}/>
+                        <ErrorBoundry>
+                            <PersonDetails personId={4}/>
+                        </ErrorBoundry>
                     } 
                 />
 
@@ -37,7 +40,9 @@ export default class App extends Component {
                             renderItem={(item) => `${item.name} (${item.costInCredits}Creds)`}/>
                     } 
                     rightElement= {
-                        <PersonDetails personId={8}/>
+                        <ErrorBoundry>
+                            <PersonDetails personId={8}/>
+                        </ErrorBoundry>
                     } 
                 />
             </div>

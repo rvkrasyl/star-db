@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import ErrorIndicator from "../ErrorIndicator";
+import ErrorBoundry from "../ErrorBoundry";
 import ItemList from "../ItemList";
 import PersonDetails from "../PersonDetails";
 import BodyRow from "../BodyRow";
@@ -9,13 +9,6 @@ import './PeoplePage.css'
 export default class PeoplePage extends Component {
     state = {
         selectedItem: 1,
-        hasError: false,
-    }
-
-    componentDidCatch() {
-        this.setState({
-            hasError: true,
-        });
     }
 
     onItemSelected = (id) => {
@@ -26,10 +19,6 @@ export default class PeoplePage extends Component {
 
     render () {
 
-        if(this.state.hasError) {
-            return <ErrorIndicator />
-        }
-
         const itemList = (
             <ItemList 
                 onItemSelected={this.onItemSelected}
@@ -37,12 +26,14 @@ export default class PeoplePage extends Component {
                 renderItem={({ name, gender }) => `${name} (${gender})`}/>
         ); 
         const personDetails = (
+            <ErrorBoundry >
             <PersonDetails 
                 personId={this.state.selectedItem}/>
+            </ErrorBoundry >
         );
 
         return (
-            <BodyRow 
+                <BodyRow 
                 leftElement={itemList} 
                 rightElement={personDetails} />
         );
