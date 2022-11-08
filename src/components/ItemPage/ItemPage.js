@@ -4,11 +4,11 @@ import ItemList from "../ItemList";
 import ItemDetails from "../ItemDetails";
 import BodyRow from "../BodyRow";
 
-import './PeoplePage.css'
+import './ItemPage.css'
 
-export default class PeoplePage extends Component {
+export default class ItemPage extends Component {
     state = {
-        selectedItem: 10,
+        selectedItem: 11,
     }
 
     onItemSelected = (id) => {
@@ -18,12 +18,11 @@ export default class PeoplePage extends Component {
     }
 
     render () {
-        console.log(this.props.getImg);
         const itemList = (
             <ItemList 
                 onItemSelected={this.onItemSelected}
                 getData={this.props.peopleData}
-                renderItem={({ name, gender }) => `${name} (${gender})`}/>
+                renderItem={({ name }) => `${name}`}/>
         ); 
         const itemDetails = (
             <ErrorBoundry >
