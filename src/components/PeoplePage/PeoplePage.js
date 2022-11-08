@@ -18,7 +18,7 @@ export default class PeoplePage extends Component {
     }
 
     render () {
-
+        console.log(this.props.getImg);
         const itemList = (
             <ItemList 
                 onItemSelected={this.onItemSelected}
@@ -28,12 +28,14 @@ export default class PeoplePage extends Component {
         const itemDetails = (
             <ErrorBoundry >
             <ItemDetails 
-                itemId={this.state.selectedItem}/>
+                itemId={this.state.selectedItem}
+                getData={this.props.peopleDetails}
+                getImgUrl={this.props.getImg}/>
             </ErrorBoundry >
         );
 
         return (
-                <BodyRow 
+            <BodyRow 
                 leftElement={itemList} 
                 rightElement={itemDetails} />
         );

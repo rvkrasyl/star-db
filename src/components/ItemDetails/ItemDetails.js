@@ -9,20 +9,18 @@ export default class ItemDetails extends Component {
     
     state = {
         item: null,
+        image: null,
         loaded: false,
     }
 
-    swapiService = new SwapiService();
-
     componentDidMount() {
         this.updateItem();
-        console.log('updated Mount');
     }
 
     componentDidUpdate(prevProps, prevState) {
         if (this.props.itemId !== prevProps.itemId) {
             this.stateToLoad();
-            this.updatePerson();
+            this.updateItem();
         }
     }
 
@@ -33,13 +31,12 @@ export default class ItemDetails extends Component {
     }
 
     updateItem = () => {
-        const { itemId } = this.props;
+        const { itemId, getData, getImgUrl } = this.props;
         if(itemId)
         {
-            this.swapiService
-            .getPerson(itemId)
+            getData(itemId)
             .then((item) => {
-                this.setState({ item, loaded: true })
+                this.setState({ item, loaded: true, image: getImgUrl(item) })
             })
             .catch(this.onError);
         }
@@ -51,7 +48,7 @@ export default class ItemDetails extends Component {
         }
 
         const { item, loaded } = this.state;
-        const content = loaded ? <ItemView item={item} /> : <Spinner />;
+        const content = loaded ? <ItemView item={item} img={this.state.image} /> : <Spinner />;
 
         return (
             <div className="item-details card">
@@ -61,14 +58,14 @@ export default class ItemDetails extends Component {
     }
 }
 
-const ItemView = ({item}) => {
+const ItemView = ({item, img}) => {
 
-    const { id, name, gender,
+    const { name, gender,
             birthYear, eyeColor } = item;
 
     return (
         <React.Fragment>
-            <img className="item-image" src={`https://starwars-visualguide.com/assets/img/characters/${id}.jpg`} alt="current item"></img>
+            <img className="item-image" src={img} alt="current item"></img>
                 <div className="card-body">
                     <h4>{name}</h4>
                     <ul className="list-group list-group-flush">

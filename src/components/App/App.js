@@ -18,9 +18,12 @@ export default class App extends Component {
             <div className="app">
                 <Header />
                 <RandomPlanet />
-                <PeoplePage peopleData={this.swapiService.getAllPeople}/>
+                <PeoplePage 
+                    peopleData={this.swapiService.getAllPeople}
+                    peopleDetails={this.swapiService.getPerson}
+                    getImg={this.swapiService.getPersonImg}/>
 
-                <BodyRow 
+                {/* <BodyRow 
                     leftElement={
                         <ItemList 
                             getData={this.swapiService.getAllPlanets}
@@ -44,7 +47,7 @@ export default class App extends Component {
                             <ItemDetails itemId={8}/>
                         </ErrorBoundry>
                     } 
-                />
+                /> */}
             </div>
         );
     }
