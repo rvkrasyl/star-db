@@ -20,7 +20,9 @@ export default class App extends Component {
 
                 <div className="row mb2">
                     <div className="col-md-6">
-                        <ItemList getData={this.swapiService.getAllPlanets} />
+                        <ItemList 
+                            getData={this.swapiService.getAllPlanets}
+                            renderItem={(item) => `${item.name} (${item.diameter}km²)`} />
                     </div>
                     <div className="col-md-6">
                         <PersonDetails personId={4}/>
@@ -29,7 +31,9 @@ export default class App extends Component {
 
                 <div className="row mb2">
                     <div className="col-md-6">
-                        <ItemList getData={this.swapiService.getAllStarships} />
+                        <ItemList 
+                            getData={this.swapiService.getAllStarships}
+                            renderItem={(item) => `${item.name} (${item.costInCredits}Creds)` } />
                     </div>
                     <div className="col-md-6">
                         <PersonDetails personId={8}/>

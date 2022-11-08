@@ -34,7 +34,8 @@ export default class PeoplePage extends Component {
                 <div className="col-md-6">
                     <ItemList 
                         onItemSelected={this.onItemSelected}
-                        getData={this.props.peopleData}/>
+                        getData={this.props.peopleData}
+                        renderItem={({ name, gender }) => `${name} (${gender})`}/>
                 </div>
                 <div className="col-md-6">
                     <PersonDetails personId={this.state.selectedItem}/>
