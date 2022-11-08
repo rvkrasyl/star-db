@@ -2,11 +2,7 @@ import React, {Component} from "react";
 import Header from "../Header";
 import RandomPlanet from "../RandomPlanet";
 import PeoplePage from "../PeoplePage";
-import ItemList from "../ItemList";
-import ItemDetails from "../ItemDetails";
 import SwapiService from "../../services/SwapiService";
-import BodyRow from "../BodyRow";
-import ErrorBoundry from "../ErrorBoundry";
 
 import './App.css';
 export default class App extends Component {   
@@ -17,7 +13,9 @@ export default class App extends Component {
         return (
             <div className="app">
                 <Header />
-                <RandomPlanet />
+                <RandomPlanet 
+                    getData={this.swapiService.getPlanet}
+                    getDataImg={this.swapiService.getPlanetImg} />
                 <PeoplePage 
                     peopleData={this.swapiService.getAllPeople}
                     peopleDetails={this.swapiService.getPerson}

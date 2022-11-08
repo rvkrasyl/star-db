@@ -1,19 +1,16 @@
 import React, { Component } from "react";
-
-import SwapiService from "../../services/SwapiService";
 import Spinner from "../Spinner";
 import ErrorIndicator from "../ErrorIndicator";
 
 import './RandomPlanet.css';
 
 export default class RandomPlanet extends Component {
-    
-    _swapiService = new SwapiService();
 
     state = {
         planet: {},
         loading: true,
-        error: false
+        error: false,
+        image: null,
     }
 
     componentDidMount() {
@@ -26,7 +23,7 @@ export default class RandomPlanet extends Component {
     }
 
     onPlanetLoaded = (planet) => {
-        this.setState({planet, loading: false});
+        this.setState({planet, loading: false, image: this.props.getDataImg(planet)});
     }
 
     onError = (err) => {
@@ -36,18 +33,17 @@ export default class RandomPlanet extends Component {
     updatePlanet = () => {
         const id = parseInt(Math.random()*21 + 2);
 
-        this._swapiService
-            .getPlanet(id)
+        this.props.getData(id)
             .then(this.onPlanetLoaded)
             .catch(this.onError);
     }
     
     render() {
-        const {planet, loading, error} = this.state;
+        const {planet, loading, error, image} = this.state;
 
         const hasData = !(loading || error);
         const spinner = loading ? <Spinner /> : null;
-        const content = hasData ? <PlanetView planet={planet}/> : null;
+        const content = hasData ? <PlanetView planet={planet} image={image}/> : null;
         const errorMsg = error ? <ErrorIndicator/> : null;
         
         return (
@@ -60,14 +56,14 @@ export default class RandomPlanet extends Component {
     }
 }
 
-const PlanetView = ({planet}) => {
+const PlanetView = ({planet, image}) => {
     
-    const { id, name, population, 
+    const { name, population, 
         rotationPeriod, diameter } = planet;
     
     return (
         <React.Fragment>
-            <img className="planet-image" src={`https://starwars-visualguide.com/assets/img/planets/${id}.jpg`} alt="Current planet"></img>
+            <img className="planet-image" src={image} alt="Current planet"></img>
             <div>
                 <h4>{name}</h4>
                 <ul className="list-group list-group-flush">
