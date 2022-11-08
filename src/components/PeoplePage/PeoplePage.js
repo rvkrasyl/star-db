@@ -8,7 +8,7 @@ import './PeoplePage.css'
 
 export default class PeoplePage extends Component {
     state = {
-        selectedItem: 1,
+        selectedItem: 10,
     }
 
     onItemSelected = (id) => {

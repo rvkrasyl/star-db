@@ -23,31 +23,15 @@ export default class App extends Component {
                     peopleDetails={this.swapiService.getPerson}
                     getImg={this.swapiService.getPersonImg}/>
 
-                {/* <BodyRow 
-                    leftElement={
-                        <ItemList 
-                            getData={this.swapiService.getAllPlanets}
-                            renderItem={(item) => `${item.name} (${item.diameter}km²)`}/>
-                    } 
-                    rightElement= {
-                        <ErrorBoundry>
-                            <ItemDetails itemId={4}/>
-                        </ErrorBoundry>
-                    } 
-                />
+                <PeoplePage 
+                    peopleData={this.swapiService.getAllPlanets}
+                    peopleDetails={this.swapiService.getPlanet}
+                    getImg={this.swapiService.getPlanetImg}/>
 
-                <BodyRow 
-                    leftElement={
-                        <ItemList 
-                            getData={this.swapiService.getAllStarships}
-                            renderItem={(item) => `${item.name} (${item.costInCredits}Creds)`}/>
-                    } 
-                    rightElement= {
-                        <ErrorBoundry>
-                            <ItemDetails itemId={8}/>
-                        </ErrorBoundry>
-                    } 
-                /> */}
+                <PeoplePage 
+                    peopleData={this.swapiService.getAllStarships}
+                    peopleDetails={this.swapiService.getStarship}
+                    getImg={this.swapiService.getStarshipImg}/>
             </div>
         );
     }
