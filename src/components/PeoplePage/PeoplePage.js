@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import ErrorBoundry from "../ErrorBoundry";
 import ItemList from "../ItemList";
-import ItemDetails from "../ItemDetails";
+import ItemDetails, { Record } from "../ItemDetails/ItemDetails";
 import BodyRow from "../BodyRow";
 
 import './PeoplePage.css'
@@ -30,7 +30,12 @@ export default class PeoplePage extends Component {
             <ItemDetails 
                 itemId={this.state.selectedItem}
                 getData={this.props.peopleDetails}
-                getImgUrl={this.props.getImg}/>
+                getImgUrl={this.props.getImg}
+            >
+                <Record field="gender" label="Gender" />
+                <Record field="birthYear" label="Birth Year" />
+                <Record field="eyeColor" label="Eye Color" />
+            </ItemDetails>
             </ErrorBoundry >
         );
 

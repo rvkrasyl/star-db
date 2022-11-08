@@ -47,7 +47,17 @@ export default class ItemDetails extends Component {
         }
 
         const { item, loaded } = this.state;
-        const content = loaded ? <ItemView item={item} img={this.state.image} /> : <Spinner />;
+        const content = loaded ? 
+            <ItemView item={item} 
+                      img={this.state.image} 
+                      components={ 
+                        React.Children
+                            .map(this.props.children, (child) => {
+                                return child;
+                            })
+                      } 
+            /> : 
+            <Spinner />;
 
         return (
             <div className="item-details card">
@@ -57,10 +67,18 @@ export default class ItemDetails extends Component {
     }
 }
 
-const ItemView = ({item, img}) => {
+export const Record = ({ item, field, label }) => {
+    return (
+        <li className="list-group-item">
+            <span className="term">{label}:</span>
+            <span>{field}</span>
+        </li>
+    );
+}
 
-    const { name, gender,
-            birthYear, eyeColor } = item;
+const ItemView = ({item, img, components}) => {
+
+    const { name } = item;
 
     return (
         <React.Fragment>
@@ -68,18 +86,7 @@ const ItemView = ({item, img}) => {
                 <div className="card-body">
                     <h4>{name}</h4>
                     <ul className="list-group list-group-flush">
-                        <li className="list-group-item">
-                            <span className="term">Gender:</span>
-                            <span>{gender}</span>
-                        </li>
-                        <li className="list-group-item">
-                            <span className="term">Birth Year:</span>
-                            <span>{birthYear}</span>
-                        </li>
-                        <li className="list-group-item">
-                            <span className="term">Eye color:</span>
-                            <span>{eyeColor}</span>
-                        </li>
+                        {components}
                     </ul>
                     <ErrorBtn />
                 </div>
