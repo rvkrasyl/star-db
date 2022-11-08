@@ -7,7 +7,7 @@ import './PeoplePage.css'
 
 export default class PeoplePage extends Component {
     state = {
-        selectedPerson: 1,
+        selectedItem: 1,
         hasError: false,
     }
 
@@ -17,9 +17,9 @@ export default class PeoplePage extends Component {
         });
     }
 
-    onPersonSelected = (id) => {
+    onItemSelected = (id) => {
         this.setState({
-            selectedPerson: id,
+            selectedItem: id,
         });
     }
 
@@ -32,10 +32,12 @@ export default class PeoplePage extends Component {
         return (
             <div className="row mb2">
                 <div className="col-md-6">
-                    <ItemList onItemSelected={this.onPersonSelected}/>
+                    <ItemList 
+                        onItemSelected={this.onItemSelected}
+                        getData={this.props.peopleData}/>
                 </div>
                 <div className="col-md-6">
-                    <PersonDetails personId={this.state.selectedPerson}/>
+                    <PersonDetails personId={this.state.selectedItem}/>
                 </div>
             </div>
         );
