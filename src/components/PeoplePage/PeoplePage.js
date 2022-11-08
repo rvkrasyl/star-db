@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import ErrorBoundry from "../ErrorBoundry";
 import ItemList from "../ItemList";
-import PersonDetails from "../PersonDetails";
+import ItemDetails from "../ItemDetails";
 import BodyRow from "../BodyRow";
 
 import './PeoplePage.css'
@@ -25,17 +25,17 @@ export default class PeoplePage extends Component {
                 getData={this.props.peopleData}
                 renderItem={({ name, gender }) => `${name} (${gender})`}/>
         ); 
-        const personDetails = (
+        const itemDetails = (
             <ErrorBoundry >
-            <PersonDetails 
-                personId={this.state.selectedItem}/>
+            <ItemDetails 
+                itemId={this.state.selectedItem}/>
             </ErrorBoundry >
         );
 
         return (
                 <BodyRow 
                 leftElement={itemList} 
-                rightElement={personDetails} />
+                rightElement={itemDetails} />
         );
     }
 }

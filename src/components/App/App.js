@@ -3,7 +3,7 @@ import Header from "../Header";
 import RandomPlanet from "../RandomPlanet";
 import PeoplePage from "../PeoplePage";
 import ItemList from "../ItemList";
-import PersonDetails from "../PersonDetails";
+import ItemDetails from "../ItemDetails";
 import SwapiService from "../../services/SwapiService";
 import BodyRow from "../BodyRow";
 import ErrorBoundry from "../ErrorBoundry";
@@ -28,7 +28,7 @@ export default class App extends Component {
                     } 
                     rightElement= {
                         <ErrorBoundry>
-                            <PersonDetails personId={4}/>
+                            <ItemDetails itemId={4}/>
                         </ErrorBoundry>
                     } 
                 />
@@ -41,7 +41,7 @@ export default class App extends Component {
                     } 
                     rightElement= {
                         <ErrorBoundry>
-                            <PersonDetails personId={8}/>
+                            <ItemDetails itemId={8}/>
                         </ErrorBoundry>
                     } 
                 />

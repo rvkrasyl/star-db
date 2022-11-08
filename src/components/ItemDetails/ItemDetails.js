@@ -1,26 +1,26 @@
 import React, { Component } from "react";
-import SwapiService from "./../../services/SwapiService";
-import Spinner from "./../Spinner";
-import ErrorBtn from "./../ErrorBtn";
+import SwapiService from "../../services/SwapiService";
+import Spinner from "../Spinner";
+import ErrorBtn from "../ErrorBtn";
 
-import './PersonDetails.css';
+import './ItemDetails.css';
 
-export default class PersonDetails extends Component {
+export default class ItemDetails extends Component {
     
     state = {
-        person: null,
+        item: null,
         loaded: false,
     }
 
     swapiService = new SwapiService();
 
     componentDidMount() {
-        this.updatePerson();
+        this.updateItem();
         console.log('updated Mount');
     }
 
     componentDidUpdate(prevProps, prevState) {
-        if (this.props.personId !== prevProps.personId) {
+        if (this.props.itemId !== prevProps.itemId) {
             this.stateToLoad();
             this.updatePerson();
         }
@@ -32,43 +32,43 @@ export default class PersonDetails extends Component {
         });
     }
 
-    updatePerson = () => {
-        const { personId } = this.props;
-        if(personId)
+    updateItem = () => {
+        const { itemId } = this.props;
+        if(itemId)
         {
             this.swapiService
-            .getPerson(personId)
-            .then((person) => {
-                this.setState({ person, loaded: true })
+            .getPerson(itemId)
+            .then((item) => {
+                this.setState({ item, loaded: true })
             })
             .catch(this.onError);
         }
     }
     render() {
 
-        if(!this.state.person) {
+        if(!this.state.item) {
             return <Spinner />
         }
 
-        const { person, loaded } = this.state;
-        const content = loaded ? <PersonView person={person} /> : <Spinner />;
+        const { item, loaded } = this.state;
+        const content = loaded ? <ItemView item={item} /> : <Spinner />;
 
         return (
-            <div className="person-details card">
+            <div className="item-details card">
                 {content}
             </div>
         );
     }
 }
 
-const PersonView = ({person}) => {
+const ItemView = ({item}) => {
 
     const { id, name, gender,
-            birthYear, eyeColor } = person;
+            birthYear, eyeColor } = item;
 
     return (
         <React.Fragment>
-            <img className="person-image" src={`https://starwars-visualguide.com/assets/img/characters/${id}.jpg`} alt="current person"></img>
+            <img className="item-image" src={`https://starwars-visualguide.com/assets/img/characters/${id}.jpg`} alt="current item"></img>
                 <div className="card-body">
                     <h4>{name}</h4>
                     <ul className="list-group list-group-flush">
