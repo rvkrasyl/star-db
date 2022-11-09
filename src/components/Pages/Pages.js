@@ -1,5 +1,6 @@
 import React from "react";
 import ItemPage from "../ItemPage";
+import { RenderOutputConsumer } from "../RenderOutputs";
 
 const Record = ({ item, field, label }) => {
     return (
@@ -10,49 +11,73 @@ const Record = ({ item, field, label }) => {
     );
 }
 
-const PeoplePage = ({ swapi, renderOutput }) => {
+const PeoplePage = () => {
     return (
-        <ItemPage 
-            peopleData={swapi.getAllPeople}
-            peopleDetails={swapi.getPerson}
-            getImg={swapi.getPersonImg}
-            renderOutput={renderOutput}
-        >
-            <Record field="gender" label="Gender" />
-            <Record field="birthYear" label="Birth Year" />
-            <Record field="eyeColor" label="Eye Color" />
-        </ItemPage>
+        <RenderOutputConsumer>
+            {
+                ({ peopleOutput, swapi }) => {
+                    return (
+                        <ItemPage 
+                            peopleData={swapi.getAllPeople}
+                            peopleDetails={swapi.getPerson}
+                            getImg={swapi.getPersonImg}
+                            renderOutput={peopleOutput}
+                        >
+                            <Record field="gender" label="Gender" />
+                            <Record field="birthYear" label="Birth Year" />
+                            <Record field="eyeColor" label="Eye Color" />
+                        </ItemPage>
+                    );
+                }
+            }
+        </RenderOutputConsumer>
     );
 }
 
-const PlanetsPage = ({ swapi, renderOutput }) => {
+const PlanetsPage = () => {
     return (
-        <ItemPage 
-            peopleData={swapi.getAllPlanets}
-            peopleDetails={swapi.getPlanet}
-            getImg={swapi.getPlanetImg}
-            renderOutput={renderOutput}
-        >
-            <Record field="diameter" label="Size" />
-            <Record field="population" label="Population" />
-            <Record field="rotationPeriod" label="Rotate per" />
-        </ItemPage>
+        <RenderOutputConsumer>
+            {
+                ({ planetsOutput, swapi }) => {
+                    return (
+                        <ItemPage 
+                            peopleData={swapi.getAllPlanets}
+                            peopleDetails={swapi.getPlanet}
+                            getImg={swapi.getPlanetImg}
+                            renderOutput={planetsOutput}
+                        >
+                            <Record field="diameter" label="Size" />
+                            <Record field="population" label="Population" />
+                            <Record field="rotationPeriod" label="Rotate per" />
+                        </ItemPage>
+                    )
+                }
+            }
+        </RenderOutputConsumer>
     )
 }
 
-const StarshipsPage = ({ swapi, renderOutput }) => {
+const StarshipsPage = () => {
     return (
-        <ItemPage 
-            peopleData={swapi.getAllStarships}
-            peopleDetails={swapi.getStarship}
-            getImg={swapi.getStarshipImg}
-            renderOutput={renderOutput}
-        >
-            <Record field="model" label="Model" />
-            <Record field="manufacturer" label="Manufacturer" />
-            <Record field="length" label="Length" />
-            <Record field="costInCredits" label="Cost" />
-        </ItemPage>
+        <RenderOutputConsumer>
+            {
+                ({ starshipsOutput, swapi }) => {
+                    return (
+                        <ItemPage 
+                            peopleData={swapi.getAllStarships}
+                            peopleDetails={swapi.getStarship}
+                            getImg={swapi.getStarshipImg}
+                            renderOutput={starshipsOutput}
+                        >
+                            <Record field="model" label="Model" />
+                            <Record field="manufacturer" label="Manufacturer" />
+                            <Record field="length" label="Length" />
+                            <Record field="costInCredits" label="Cost" />
+                        </ItemPage>
+                    );
+                }
+            }
+        </RenderOutputConsumer>        
     )
 }
 
