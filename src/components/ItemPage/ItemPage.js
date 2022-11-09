@@ -22,7 +22,7 @@ export default class ItemPage extends Component {
             <ItemList 
                 onItemSelected={this.onItemSelected}
                 getData={this.props.peopleData}
-                renderItem={({ name }) => `${name}`}/>
+                renderItem={this.props.renderOutput}/>
         ); 
         const itemDetails = (
             <ErrorBoundry >

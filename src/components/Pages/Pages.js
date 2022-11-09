@@ -10,12 +10,13 @@ const Record = ({ item, field, label }) => {
     );
 }
 
-const PeoplePage = ({ swapi }) => {
+const PeoplePage = ({ swapi, renderOutput }) => {
     return (
         <ItemPage 
             peopleData={swapi.getAllPeople}
             peopleDetails={swapi.getPerson}
             getImg={swapi.getPersonImg}
+            renderOutput={renderOutput}
         >
             <Record field="gender" label="Gender" />
             <Record field="birthYear" label="Birth Year" />
@@ -24,12 +25,13 @@ const PeoplePage = ({ swapi }) => {
     );
 }
 
-const PlanetsPage = ({ swapi }) => {
+const PlanetsPage = ({ swapi, renderOutput }) => {
     return (
         <ItemPage 
             peopleData={swapi.getAllPlanets}
             peopleDetails={swapi.getPlanet}
             getImg={swapi.getPlanetImg}
+            renderOutput={renderOutput}
         >
             <Record field="diameter" label="Size" />
             <Record field="population" label="Population" />
@@ -38,12 +40,13 @@ const PlanetsPage = ({ swapi }) => {
     )
 }
 
-const StarshipsPage = ({ swapi }) => {
+const StarshipsPage = ({ swapi, renderOutput }) => {
     return (
         <ItemPage 
             peopleData={swapi.getAllStarships}
             peopleDetails={swapi.getStarship}
             getImg={swapi.getStarshipImg}
+            renderOutput={renderOutput}
         >
             <Record field="model" label="Model" />
             <Record field="manufacturer" label="Manufacturer" />
