@@ -59,3 +59,7 @@ export default class ItemList extends Component {
         );
     }
 }
+
+ItemList.defaultProps = {
+    renderItem: () => { return "blah-blah-blah" }
+}
