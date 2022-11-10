@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import Record from "./Record";
 import ItemPage from "../ItemPage";
 import { RenderOutputConsumer } from "../RenderOutputs";
-import { Component } from "react";
 
 export default class PlanetsPage extends Component {
     render() {
