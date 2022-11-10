@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Spinner from '../Spinner';
+import PropTypes from 'prop-types';
 
 import './ItemList.css';
 
@@ -62,4 +63,10 @@ export default class ItemList extends Component {
 
 ItemList.defaultProps = {
     renderItem: () => { return "blah-blah-blah" }
+}
+
+ItemList.propTypes = {
+    renderItem: PropTypes.func,
+    getData: PropTypes.func.isRequired,
+    onItemSelected: PropTypes.func
 }
