@@ -21,14 +21,14 @@ export default class ItemPage extends Component {
         const itemList = (
             <ItemList 
                 onItemSelected={this.onItemSelected}
-                getData={this.props.peopleData}
+                getData={this.props.itemData}
                 renderItem={this.props.renderOutput}/>
         ); 
         const itemDetails = (
             <ErrorBoundry >
             <ItemDetails 
                 itemId={this.state.selectedItem}
-                getData={this.props.peopleDetails}
+                getData={this.props.itemDetails}
                 getImgUrl={this.props.getImg}
             >
                 {this.props.children}

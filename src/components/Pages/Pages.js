@@ -18,8 +18,8 @@ const PeoplePage = () => {
                 ({ peopleOutput, swapi }) => {
                     return (
                         <ItemPage 
-                            peopleData={swapi.getAllPeople}
-                            peopleDetails={swapi.getPerson}
+                            itemData={swapi.getAllPeople}
+                            itemDetails={swapi.getPerson}
                             getImg={swapi.getPersonImg}
                             renderOutput={peopleOutput}
                         >
@@ -41,8 +41,8 @@ const PlanetsPage = () => {
                 ({ planetsOutput, swapi }) => {
                     return (
                         <ItemPage 
-                            peopleData={swapi.getAllPlanets}
-                            peopleDetails={swapi.getPlanet}
+                            itemData={swapi.getAllPlanets}
+                            itemDetails={swapi.getPlanet}
                             getImg={swapi.getPlanetImg}
                             renderOutput={planetsOutput}
                         >
@@ -64,8 +64,8 @@ const StarshipsPage = () => {
                 ({ starshipsOutput, swapi }) => {
                     return (
                         <ItemPage 
-                            peopleData={swapi.getAllStarships}
-                            peopleDetails={swapi.getStarship}
+                            itemData={swapi.getAllStarships}
+                            itemDetails={swapi.getStarship}
                             getImg={swapi.getStarshipImg}
                             renderOutput={starshipsOutput}
                         >
