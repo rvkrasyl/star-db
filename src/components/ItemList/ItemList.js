@@ -10,7 +10,16 @@ export default class ItemList extends Component {
     }
 
     componentDidMount() {
+        this.update();
+    }
 
+    componentDidUpdate(prevProps) {
+        if (this.props.getData !== prevProps.getData) {
+            this.update();
+        }
+    }
+
+    update() {
         const { getData } = this.props;
         getData()
             .then((itemsList) => {
