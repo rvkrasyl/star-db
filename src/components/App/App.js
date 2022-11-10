@@ -11,7 +11,7 @@ import './App.css';
 export default class App extends Component {   
     
     state = {
-        swapiService: new DummySwapiService()
+        swapiService: new SwapiService()
     }
 
     onServiceChange = () => {
