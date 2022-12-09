@@ -48,7 +48,9 @@ export default class App extends Component {
                             getDataImg={swapi.getPlanetImg} />
                         <Routes>
                             <Route path = "/" element = {<h2>Welcome to StarDB</h2>} />
+                            <Route path = "/people/:id" element = {<PeoplePage />} />
                             <Route path = "/people" element = {<PeoplePage />} />
+                            <Route path = "/planets" element = {<PlanetsPage />} />
                             <Route path = "/planets" element = {<PlanetsPage />} />
                             <Route path = "/starships" exact element = {<StarshipsPage />} />
                             <Route path = "/starships/:id" exact element = {
