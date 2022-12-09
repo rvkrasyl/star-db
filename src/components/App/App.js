@@ -5,6 +5,7 @@ import { PeoplePage, PlanetsPage, StarshipsPage } from "../Pages";
 import SwapiService from "../../services";
 import DummySwapiService from "../../services/DummySwapiService";
 import { RenderOutputProvider } from "../RenderOutputs";
+import  { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 import './App.css';
 
@@ -33,18 +34,25 @@ export default class App extends Component {
         const swapi = this.state.swapiService;
 
         return (
+            
             <RenderOutputProvider value={
-                { peopleOutput, planetsOutput, starshipsOutput, swapi }
-            }>
-                <div className="app">
-                    <Header onServiceChange={this.onServiceChange}/>
-                    <RandomPlanet 
-                        getData={swapi.getPlanet}
-                        getDataImg={swapi.getPlanetImg} />
-                    <PeoplePage />
-                    <PlanetsPage />
-                    <StarshipsPage />
-                </div>
+                { peopleOutput, planetsOutput, starshipsOutput, swapi }}
+            >
+                <Router>
+                    <div className="app">
+                        <Header onServiceChange={this.onServiceChange}/>
+                        <RandomPlanet 
+                            getData={swapi.getPlanet}
+                            getDataImg={swapi.getPlanetImg} />
+                        <Routes>
+                            <Route path = "/" element = {<h2>Welcome to StarDB</h2>} />
+                            
+                            <Route path = "/people" element = {<PeoplePage />} />
+                            <Route path = "/planets" element = {<PlanetsPage />} />
+                            <Route path = "/starships" element = {<StarshipsPage />} />
+                        </Routes>
+                    </div>
+                </Router>
             </RenderOutputProvider>
         );
     }
