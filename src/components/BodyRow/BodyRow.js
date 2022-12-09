@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 import './BodyRow.css'
 
@@ -13,6 +14,11 @@ const BodyRow = ({ leftElement, rightElement }) => {
             </div>
         </div>
     );
+}
+
+BodyRow.propTypes = {
+    leftElement: PropTypes.node.isRequired,
+    rightElement: PropTypes.node
 }
 
 export default BodyRow;
