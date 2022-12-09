@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import Header from "../Header";
 import RandomPlanet from "../RandomPlanet";
-import { PeoplePage, PlanetsPage, StarshipsPage } from "../Pages";
+import { PeoplePage, PlanetsPage, StarshipsPage, LoginPage, SecretPage } from "../Pages";
 import SwapiService from "../../services";
 import DummySwapiService from "../../services/DummySwapiService";
 import { RenderOutputProvider } from "../RenderOutputs";
@@ -14,8 +14,15 @@ import './App.css';
 export default class App extends Component {   
     
     state = {
-        swapiService: new SwapiService()
+        swapiService: new SwapiService(),
+        isLoggedIn: false
     }
+
+    onLogin = () => {
+        this.setState({
+            isLoggedIn: true
+        })
+    };
 
     onServiceChange = () => {
         this.setState(({ swapiService }) => {
@@ -34,6 +41,7 @@ export default class App extends Component {
         const planetsOutput = (item) => `${item.name} (${item.diameter}km²)`;
         const starshipsOutput = (item) => `${item.name} (${item.length}m)`;
         const swapi = this.state.swapiService;
+        const { isLoggedIn } = this.state;
 
         return (
             
@@ -63,9 +71,10 @@ export default class App extends Component {
                                     <Record field="manufacturer" label="Manufacturer" />
                                     <Record field="length" label="Length" />
                                     <Record field="costInCredits" label="Cost" />
-                                </ItemDetails>    
-                            } 
-                            />
+                                </ItemDetails>
+                            }/>
+                            <Route path = "/login" exact element = {<LoginPage isLoggedIn={isLoggedIn} onLogin={this.onLogin} />} />
+                            <Route path = "/secret" exact element = {<SecretPage isLoggedIn={isLoggedIn} />} />
                         </Routes>
                     </div>
                 </Router>
