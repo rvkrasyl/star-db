@@ -1,20 +1,11 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 
 
 const SecretPage = ({ isLoggedIn }) => {
     
-    let navigate = useNavigate();
-    
-    React.useEffect(() => {
-        if (!isLoggedIn){
-           return navigate("/login");
-        }
-    }
-    ,[!isLoggedIn]);
-
     if (!isLoggedIn){
-        return ;
+        return <Navigate to="/login"/>;
     }
     return ( 
         <div className="jumbotron text-center">

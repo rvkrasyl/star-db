@@ -5,7 +5,7 @@ import { PeoplePage, PlanetsPage, StarshipsPage, LoginPage, SecretPage } from ".
 import SwapiService from "../../services";
 import DummySwapiService from "../../services/DummySwapiService";
 import { RenderOutputProvider } from "../RenderOutputs";
-import  { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import  { BrowserRouter as Router, Route, Routes, Navigate } from "react-router-dom";
 import ItemDetails from "../ItemDetails";
 import Record from "../Pages/Record";
 
@@ -75,6 +75,7 @@ export default class App extends Component {
                             }/>
                             <Route path = "/login" exact element = {<LoginPage isLoggedIn={isLoggedIn} onLogin={this.onLogin} />} />
                             <Route path = "/secret" exact element = {<SecretPage isLoggedIn={isLoggedIn} />} />
+                            <Route path="*" element={<Navigate to="/" />} />
                         </Routes>
                     </div>
                 </Router>

@@ -1,16 +1,11 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 
 const LoginPage = ({ isLoggedIn, onLogin }) => {
 
-    let navigate = useNavigate();
-    
-    React.useEffect(() => {
-        if (isLoggedIn){
-           return navigate("/");
-        }
-    }
-    ,[isLoggedIn]);
+    if (isLoggedIn){
+        return <Navigate to="/" />;
+     }
 
     return (
         <div className="jumbotron">
